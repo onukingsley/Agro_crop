@@ -111,15 +111,16 @@
 
 
         </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:id="@+id/signin_navbar"
-            />
-
 
     </LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/signin_navbar"
+        app:menu="@menu/unauthorised_menu"
+        />
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

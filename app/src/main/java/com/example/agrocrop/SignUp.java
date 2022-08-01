@@ -57,7 +57,7 @@ public class SignUp extends AppCompatActivity {
         password = findViewById(R.id.password);
         signup = findViewById(R.id.signup);
         signin = findViewById(R.id.signin);
-        image = findViewById(R.id.image);
+        image = findViewById(R.id.images);
 
         storage = FirebaseStorage.getInstance();
         ref = storage.getReference();
@@ -77,6 +77,12 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SignUp.this,SignIn.class);
                 startActivity(intent);
+            }
+        });
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imagepicker();
             }
         });
 
@@ -135,6 +141,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 uploadimage();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -155,7 +162,7 @@ public class SignUp extends AppCompatActivity {
         user.put("email", email.getText().toString());
         user.put("avatar",avatar);
         user.put("date registered", format.format(date));
-        user.put("role", 2);
+        user.put("role", "2");
 
         db.collection("user").document(currentuser.getUid()).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
