@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,7 +25,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.type.DateTime;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class SignUp extends AppCompatActivity {
@@ -59,6 +65,21 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentuser = mAuth.getCurrentUser();
 
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createuser(email.getText().toString(),password.getText().toString());
+            }
+        });
+
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUp.this,SignIn.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 
@@ -92,6 +113,7 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         avatar = task.getResult().toString();
+                        postUser();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -120,6 +142,28 @@ public class SignUp extends AppCompatActivity {
                 Toast.makeText(SignUp.this, "Failed to create a user ", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+    public void postUser(){
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yy");
+        Date date = new Date();
+
+        Map<String, Object> user = new HashMap<>();
+
+        user.put("username", username.getText().toString());
+        user.put("fullname", fullname.getText().toString());
+        user.put("email", email.getText().toString());
+        user.put("avatar",avatar);
+        user.put("date registered", format.format(date));
+        user.put("role", 2);
+
+        db.collection("user").document(currentuser.getUid()).set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(SignUp.this, "user has been created successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
