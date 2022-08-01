@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1084589281796",
+    "project_id": "agro-crop",
+    "storage_bucket": "agro-crop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084589281796:android:c685cf956b4aa6196adb51",
+        "android_client_info": {
+          "package_name": "com.example.agrocrop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084589281796-i8l6o24jspnrno0nleind4ch8rg1le88.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-UxXBp0Uu_wrOW9uu0-NWB4ZpUGTaM3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084589281796-i8l6o24jspnrno0nleind4ch8rg1le88.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
