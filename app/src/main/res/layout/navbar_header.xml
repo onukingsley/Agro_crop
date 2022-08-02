@@ -97,20 +97,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/no_of_subscribers"
-                    android:textSize="13dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="70dp"
-                    android:textColor="@color/dimgray"
-                    android:textStyle="bold"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subscribers"
                     android:textSize="13dp"
+                    android:textColor="@color/dimgray"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/userstatus"
+                    android:textSize="13dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="70dp"
                     android:textColor="@color/dimgray"
                     android:textStyle="bold"/>
             </LinearLayout>

@@ -19,6 +19,7 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:id="@+id/bottom_navbar"
             android:layout_alignParentBottom="true"
             app:menu="@menu/home_menu" />
 
@@ -28,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:id="@+id/bottom_navbar"/>
+        android:id="@+id/home_navbar"/>
 
 
 

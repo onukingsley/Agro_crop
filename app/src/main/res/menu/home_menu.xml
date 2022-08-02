@@ -9,13 +9,13 @@
     <item
         android:icon="@android:drawable/sym_contact_card"
         android:title="Crop Data"
-        android:id="@+id/CropData"
+        android:id="@+id/cropData"
 
         />
     <item
         android:icon="@android:drawable/sym_contact_card"
         android:title="Complains"
-        android:id="@+id/Complains"
+        android:id="@+id/complains"
 
         />
     <item
