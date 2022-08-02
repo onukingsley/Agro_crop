@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
-        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_up.xml" value="0.14814814814814814" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/admin/activity_admin_home.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/navbar_header.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/superadmin/activity_sadmin_home.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/superadmin/activity_super_admin_home.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/menu/home_menu.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/menu/unauthorised_menu.xml" value="0.1" />
       </map>
     </option>

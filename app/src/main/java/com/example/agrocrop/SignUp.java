@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +47,7 @@ public class SignUp extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser currentuser;
     String avatar;
+    NavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class SignUp extends AppCompatActivity {
         signup = findViewById(R.id.signup);
         signin = findViewById(R.id.signin);
         image = findViewById(R.id.images);
+        navbar = findViewById(R.id.signup_navbar);
 
         storage = FirebaseStorage.getInstance();
         ref = storage.getReference();
@@ -83,6 +87,27 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imagepicker();
+            }
+        });
+
+        navbar.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent i;
+                switch (item.getItemId()){
+
+                    case R.id.login:
+                        i = new Intent(SignUp.this, SignUp.class);
+                        startActivity(i);
+                        break;
+                    case R.id.contact_us:
+                        i = new Intent(SignUp.this, ContactUs.class);
+                        break;
+                }
+
+
+
+                return false;
             }
         });
 
@@ -163,6 +188,7 @@ public class SignUp extends AppCompatActivity {
         user.put("avatar",avatar);
         user.put("date registered", format.format(date));
         user.put("role", "2");
+        user.put("verification", "0");
 
         db.collection("user").document(currentuser.getUid()).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

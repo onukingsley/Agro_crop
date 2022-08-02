@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,6 +34,7 @@ public class SignIn extends AppCompatActivity {
     TextView signup;
     String role,username;
     ProgressDialog dialog;
+    NavigationView navbar;
 
 
     @Override
@@ -44,6 +47,7 @@ public class SignIn extends AppCompatActivity {
         password = findViewById(R.id.passwd);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        navbar = findViewById(R.id.signin_navbar);
 
         signin = findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
@@ -53,6 +57,27 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
                 dialog.show();
                 signinuser(email.getText().toString(),password.getText().toString());
+            }
+        });
+
+        navbar.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent i;
+                switch (item.getItemId()){
+
+                    case R.id.login:
+                        i = new Intent(SignIn.this, SignUp.class);
+                        startActivity(i);
+                        break;
+                    case R.id.contact_us:
+                        i = new Intent(SignIn.this, ContactUs.class);
+                        break;
+                }
+
+
+
+                return false;
             }
         });
 

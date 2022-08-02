@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Agro crop</string>
+    <string name="Splash_screen">NOX</string>
+    <string name="profile">Profile</string>
+    <string name="my_post">My Posts</string>
+    <string name="logout">Logout</string>
+    <string name="login">Login</string>
+    <string name="home">Home</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="newsfeed">Newsfeed</string>
+    <string name="search">Search</string>
+    <string name="notification">Notification</string>
+    <string name="account_info">Account Info</string>
+    <string name="posts">Posts</string>
+    <string name="subscribers">Subscribers</string>
+    <string name="open">Open</string>
+    <string name="comment">Comment</string>
+    <string name="close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

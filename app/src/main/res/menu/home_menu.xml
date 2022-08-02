@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@android:drawable/sym_contact_card"
+        android:title="@string/newsfeed"
+        android:id="@+id/newsfeed"
+
+        />
+    <item
+        android:icon="@android:drawable/sym_contact_card"
+        android:title="Crop Data"
+        android:id="@+id/CropData"
+
+        />
+    <item
+        android:icon="@android:drawable/sym_contact_card"
+        android:title="Complains"
+        android:id="@+id/Complains"
+
+        />
+    <item
+        android:icon="@android:drawable/sym_contact_card"
+        android:title="Globalnews"
+        android:id="@+id/globalnews"
+
+        />
+
+
+</menu>
