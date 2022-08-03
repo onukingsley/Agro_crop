@@ -189,6 +189,7 @@ public class SignUp extends AppCompatActivity {
         user.put("date registered", format.format(date));
         user.put("role", "2");
         user.put("verification", "0");
+        user.put("no_of_posts", "0");
 
         db.collection("user").document(currentuser.getUid()).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

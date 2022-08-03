@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.agrocrop.Fragments.Complains_Fragment;
 import com.example.agrocrop.Fragments.Crop_Data_Fragment;
@@ -26,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView buttomnav;
@@ -38,10 +41,10 @@ public class Home extends AppCompatActivity {
     Crop_Data_Fragment crop_data_fragment;
     Global_Newsfeed_Fragment global_newsfeed_fragment;
     NewsFeed_Fragment newsFeed_fragment;
-    TextView no_of_posts, userstatus,fullname,username;
+    TextView no_of_posts, userstatus,fullname,username,email;
     ImageView profileimage;
     Button edit;
-    String fullnametxt,usernametxt,posttxt,status;
+    String fullnametxt,usernametxt,posttxt,status,emailtxt,avatar;
 
 
     @Override
@@ -62,6 +65,7 @@ public class Home extends AppCompatActivity {
         crop_data_fragment = new Crop_Data_Fragment();
         global_newsfeed_fragment = new Global_Newsfeed_Fragment();
         newsFeed_fragment = new NewsFeed_Fragment();
+        get_user_details();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,newsFeed_fragment).commit();
 
@@ -93,6 +97,34 @@ public class Home extends AppCompatActivity {
         userstatus = view.findViewById(R.id.userstatus);
         fullname= view.findViewById(R.id.fullname);
         username = view.findViewById(R.id.username);
+        email = view.findViewById(R.id.email);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Picasso.with(Home.this).load(avatar).into(profileimage);
+                no_of_posts.setText(posttxt);
+                if(status.equals("0")){
+                    userstatus.setText("Super Admin");
+                }else if (status.equals("1")){
+                    userstatus.setText("Admin");
+                }else if (status.equals("2")){
+                    userstatus.setText("Farmer");
+                }
+                fullname.setText(fullnametxt);
+                username.setText(usernametxt);
+                email.setText(emailtxt);
+
+            }
+        },3000);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Home.this, "go to edit user profile", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
 
@@ -109,12 +141,21 @@ public class Home extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){
                     DocumentSnapshot document = task.getResult();
+                    fullnametxt = document.getString("fullname");
+                    usernametxt = document.getString("username");
+                    avatar = document.getString("avatar");
+                    emailtxt = document.getString("email");
+                    status = document.getString("role");
+                    posttxt = document.getString("no_of_posts");
+
+
+
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                /*Snackbar*/
+                /*Snackbar snackbar = new S*/
             }
         });
     }
