@@ -3,32 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <item
-        android:icon="@android:drawable/sym_contact_card"
+        android:icon="@drawable/home"
         android:title="@string/home"
         android:id="@+id/home"
 
         />
     <item
-        android:icon="@android:drawable/sym_contact_card"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/profile"
         android:id="@+id/profile"
 
         />
 
     <item
-    android:icon="@android:drawable/sym_contact_card"
+    android:icon="@drawable/cropdata"
     android:title="@string/cropdata"
     android:id="@+id/cropData"
 
     />
     <item
-        android:icon="@android:drawable/sym_contact_card"
+        android:icon="@drawable/complains"
         android:title="@string/complain"
         android:id="@+id/complain"
 
         />
     <item
-        android:icon="@android:drawable/sym_contact_card"
+        android:icon="@drawable/contact"
         android:title="@string/contact_us"
         android:id="@+id/contact_us"
 

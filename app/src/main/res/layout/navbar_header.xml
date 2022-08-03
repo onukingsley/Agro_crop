@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg3"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -61,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dimgray"
+            android:textColor="@color/white"
             android:text="username"
             android:id="@+id/username"
             android:textSize="14sp"
@@ -70,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dimgray"
+            android:textColor="@color/white"
             android:text="Email"
             android:id="@+id/email"
             android:textSize="14sp"
@@ -89,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dimgray"
+                    android:textColor="@color/white"
                     android:textSize="13sp"
                     android:id="@+id/no_of_posts"
                     android:layout_marginRight="5dp"
@@ -97,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dimgray"
+                    android:textColor="@color/white"
                     android:text="@string/posts"
                     android:textSize="13sp"
                     android:textStyle="bold"/>
@@ -114,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="Status"
                     android:textSize="13dp"
-                    android:textColor="@color/dimgray"
+                    android:textColor="@color/white"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -123,7 +124,7 @@
                     android:textSize="13dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/dimgray"
+                    android:textColor="@color/white"
                     android:textStyle="bold"/>
             </LinearLayout>
 

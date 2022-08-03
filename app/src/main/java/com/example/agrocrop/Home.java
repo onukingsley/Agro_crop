@@ -2,6 +2,7 @@ package com.example.agrocrop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import com.example.agrocrop.Fragments.NewsFeed_Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -30,8 +32,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import me.ibrahimsn.lib.OnItemSelectedListener;
+import me.ibrahimsn.lib.SmoothBottomBar;
+
 public class Home extends AppCompatActivity {
-    BottomNavigationView buttomnav;
+    /*BottomNavigationView buttomnav;*/
+    SmoothBottomBar buttomnav;
     NavigationView navbar;
     FrameLayout container;
     FirebaseFirestore db;
@@ -45,6 +51,7 @@ public class Home extends AppCompatActivity {
     ImageView profileimage;
     Button edit;
     String fullnametxt,usernametxt,posttxt,status,emailtxt,avatar;
+    DrawerLayout layout;
 
 
     @Override
@@ -65,11 +72,37 @@ public class Home extends AppCompatActivity {
         crop_data_fragment = new Crop_Data_Fragment();
         global_newsfeed_fragment = new Global_Newsfeed_Fragment();
         newsFeed_fragment = new NewsFeed_Fragment();
+        layout = findViewById(R.id.container);
         get_user_details();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,newsFeed_fragment).commit();
 
-        buttomnav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        buttomnav.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public boolean onItemSelect(int i) {
+
+                switch (i){
+                    case R.id.newsfeed:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,newsFeed_fragment).commit();
+                        break;
+                    case R.id.cropData:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,crop_data_fragment).commit();
+                        break;
+                    case R.id.complains:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,complains_fragment).commit();
+                        break;
+                    case R.id.globalnews:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,global_newsfeed_fragment).commit();
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+
+/*this is for the normal/default buttom navigation*/
+  /*      buttomnav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -89,6 +122,9 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
+        BadgeDrawable drawable = buttomnav.getOrCreateBadge(R.id.complains);
+        drawable.setNumber(22);*/
+
 
         View view = navbar.inflateHeaderView(R.layout.navbar_header);
         edit = view.findViewById(R.id.edituserProfile);
@@ -121,7 +157,8 @@ public class Home extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Home.this, "go to edit user profile", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(layout,"Go to edit user profile",Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         });
 
@@ -155,7 +192,8 @@ public class Home extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                /*Snackbar snackbar = new S*/
+                Snackbar snackbar = Snackbar.make(layout,"Error fetching user details, please refresh the app",Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         });
     }
