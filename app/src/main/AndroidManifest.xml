@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroCrop">
         <activity
+            android:name=".Normal_User_Profile"
+            android:exported="false" />
+        <activity
+            android:name=".NewpostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ContactUs"
             android:exported="false" />
         <activity

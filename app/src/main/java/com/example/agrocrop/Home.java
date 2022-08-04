@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -99,6 +100,22 @@ public class Home extends AppCompatActivity {
 
                 return false;
             }
+        });
+        navbar.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.profile:
+                        Intent i = new Intent(Home.this,Normal_User_Profile.class);
+                        startActivity(i);
+                        break;
+
+                }
+
+
+                return false;
+            }
+
         });
 
 /*this is for the normal/default buttom navigation*/

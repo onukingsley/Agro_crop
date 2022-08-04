@@ -175,6 +175,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+
     }
     public void postUser(){
         SimpleDateFormat format = new SimpleDateFormat("dd/mm/yy");
@@ -190,6 +191,7 @@ public class SignUp extends AppCompatActivity {
         user.put("role", "2");
         user.put("verification", "0");
         user.put("no_of_posts", "0");
+        user.put("qualification", "");
 
         db.collection("user").document(currentuser.getUid()).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -198,7 +200,9 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(SignUp.this, "user has been created successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+        Map<String, Object> totaluser = new HashMap<>();
+        totaluser.put("Totalusers",0);
+        db.collection("appcontext").document("no_of_users").set(totaluser);
     }
 
 }
