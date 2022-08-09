@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/drawable/backarrow.xml" value="0.1315" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_home.xml" value="0.19" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_newpost.xml" value="0.15" />
@@ -11,10 +12,13 @@
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/admin/activity_admin_home.xml" value="0.1" />
-        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/home_toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/fragment_global__newsfeed.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/fragment_news_feed.xml" value="0.22" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/home_toolbar.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/navbar_header.xml" value="0.3185840707964602" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/superadmin/activity_sadmin_home.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/superadmin/activity_super_admin_home.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/toolbar.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/menu/home_menu.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/menu/normal_user_menu.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/menu/normaluser_menu.xml" value="0.1" />
