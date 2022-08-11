@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
+import com.example.agrocrop.PostAdapter;
 import com.example.agrocrop.PostModel;
 import com.example.agrocrop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +38,9 @@ FirebaseFirestore db = FirebaseFirestore.getInstance();
 FirebaseAuth mAuth = FirebaseAuth.getInstance();
 FirebaseUser currentuser = mAuth.getCurrentUser();
 ArrayList<PostModel> model = new ArrayList<>();
+PostAdapter adapter;
+String username,fullname,role,avatar;
+
 
 
 
@@ -49,7 +53,8 @@ ArrayList<PostModel> model = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getpost();
+        getuserdetails();
+
 
     }
 
@@ -57,11 +62,16 @@ ArrayList<PostModel> model = new ArrayList<>();
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getpost();
+        getuserdetails();
         View view = inflater.inflate(R.layout.fragment_news_feed, container, false);
         home_toolbar = view.findViewById(R.id.home_toolbar);
         listview_container = view.findViewById(R.id.listview_container);
+        adapter = new PostAdapter(view.getContext(),model,2,username,fullname,avatar,role);
+        listview_container.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
-        ((AppCompatActivity)getActivity()).setSupportActionBar(home_toolbar);
+        /*((AppCompatActivity)getActivity()).setSupportActionBar(home_toolbar);*/
+
 
 
 
@@ -90,9 +100,26 @@ ArrayList<PostModel> model = new ArrayList<>();
                                         documentSnapshot.getString("user_qualification"));
 
                                 model.add(postmodel);
+                                adapter.notifyDataSetChanged();
+
                             }
                         }
                     }
                 });
+    }
+
+    public void getuserdetails(){
+        db.collection("user").document(currentuser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    username = documentSnapshot.getString("username");
+                    fullname = documentSnapshot.getString("fullname");
+                    avatar = documentSnapshot.getString("avatar");
+                    role = documentSnapshot.getString("role");
+                }
+            }
+        });
     }
 }

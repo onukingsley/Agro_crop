@@ -60,6 +60,7 @@ String dbimage,userimage,fullname,username,userid,user_qualification;
         content = findViewById(R.id.content);
         imagetext = findViewById(R.id.text);
         layoutcontainer = findViewById(R.id.layoutcontainer);
+        postbtn = findViewById(R.id.submit);
 
         db =FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -79,7 +80,7 @@ String dbimage,userimage,fullname,username,userid,user_qualification;
         postbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendtodb();
+                uploadimagepost();
             }
         });
 
@@ -120,6 +121,8 @@ String dbimage,userimage,fullname,username,userid,user_qualification;
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         dbimage = task.getResult().toString();
+
+                        sendtodb();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -140,7 +143,7 @@ String dbimage,userimage,fullname,username,userid,user_qualification;
 
     public void sendtodb(){
 
-        uploadimagepost();
+
         SimpleDateFormat format = new SimpleDateFormat("dd/mm/yy");
         Date date = new Date();
         Map<String, Object> newpost = new HashMap<>();

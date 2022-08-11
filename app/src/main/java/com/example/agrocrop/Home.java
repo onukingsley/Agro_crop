@@ -83,16 +83,16 @@ public class Home extends AppCompatActivity {
             public boolean onItemSelect(int i) {
 
                 switch (i){
-                    case R.id.newsfeed:
+                    case 0:
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,newsFeed_fragment).commit();
                         break;
-                    case R.id.cropData:
+                    case 1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,crop_data_fragment).commit();
                         break;
-                    case R.id.complains:
+                    case 2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,complains_fragment).commit();
                         break;
-                    case R.id.globalnews:
+                    case 3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.homecontainer,global_newsfeed_fragment).commit();
                         break;
                 }
@@ -106,7 +106,7 @@ public class Home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.profile:
-                        Intent i = new Intent(Home.this,Normal_User_Profile.class);
+                        Intent i = new Intent(Home.this,ProfileActivity.class);
                         startActivity(i);
                         break;
 
