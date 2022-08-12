@@ -57,6 +57,7 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
                 dialog.show();
                 signinuser(email.getText().toString(),password.getText().toString());
+
             }
         });
 

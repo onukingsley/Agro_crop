@@ -144,7 +144,7 @@ String dbimage,userimage,fullname,username,userid,user_qualification;
     public void sendtodb(){
 
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yy");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
         Date date = new Date();
         Map<String, Object> newpost = new HashMap<>();
 

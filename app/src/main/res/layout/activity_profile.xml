@@ -165,19 +165,20 @@
                             android:layout_marginStart="60dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/no_of_subscribers"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginEnd="13dp"
-                                android:textSize="17sp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:text="no_of_subs"
+                                android:text="Role"
                                 android:textSize="17sp" />
+
+                            <TextView
+                            android:id="@+id/role"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="13dp"
+                            android:textSize="17sp" />
                         </LinearLayout>
                     </LinearLayout>
 

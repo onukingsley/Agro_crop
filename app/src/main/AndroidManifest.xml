@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroCrop">
         <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".admin.EditAdminProfile"
+            android:exported="false" />
+        <activity
             android:name=".Normal_User_Profile"
             android:exported="false" />
         <activity

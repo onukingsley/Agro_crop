@@ -1,6 +1,7 @@
 package com.example.agrocrop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,6 +48,8 @@ public class PostAdapter extends ArrayAdapter {
     ArrayList<String> dislikesmodel = new ArrayList<>();
     ArrayList<String> likesmodel1 = new ArrayList<>();
     ArrayList<String> dislikesmodel1 = new ArrayList<>();
+    ArrayList<String> checkdislike = new ArrayList<>();
+    ArrayList<String> checklike = new ArrayList<>();
 
 
     public PostAdapter(@NonNull Context context, ArrayList<PostModel> models,int num,String username,String fullname, String avatar,String role) {
@@ -103,34 +107,64 @@ public class PostAdapter extends ArrayAdapter {
             username.setText(models.get(position).username);
             Picasso.with(context).load(models.get(position).getUserimage()).into(profile_image);
             fullname.setText(models.get(position).fullname);
-            likes.setText(models.get(position).getNo_of_likes());
-            dislikes.setText(models.get(position).getNo_of_dislikes());
+
+
             comment.setText(models.get(position).getNo_of_comment());
+
+            profile_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context,ProfileActivity.class);
+                    ((AppCompatActivity)getContext()).startActivity(i);
+                }
+            });
+
+
+            /*fetching the no of likes directly from firebase from adapter and assigning it to the model*/
+            db.collection("post").document(models.get(position).post_id).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()){
+                                DocumentSnapshot document = task.getResult();
+
+                                models.get(position).no_of_likes = (document.getString("no_of_likes"));
+                                models.get(position).no_of_dislikes = (document.getString("no_of_dislikes"));
+                                likes.setText(models.get(position).getNo_of_likes());
+                                dislikes.setText(models.get(position).getNo_of_dislikes());
+                            }
+
+                        }
+                    });
 
 
             db.collection("post").document(models.get(position).post_id).collection("dislikes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    checkdislike.clear();
                     if (task.isSuccessful()){
                         for (QueryDocumentSnapshot snapshot : task.getResult() ){
-                            if (task.getResult() != null){
-                                if (snapshot.getString("userid").toString().equals(mAuth.getCurrentUser().getUid())){
+                            checkdislike.add(snapshot.getId());
 
-                                    dislike_btn.setButtonDrawable(R.drawable.dislike_red);
-                                    dislike_btn.setChecked(true);
-
+                                /* if (snapshot.getString("userid").equals(currentuser.getUid())){
 
 
 
 
                                 }else{
 
-                                    dislike_btn.setButtonDrawable(R.drawable.dislike);
-                            }
+
+                            }*/
 
 
-                            }
                         }
+                        if (checkdislike.contains(mAuth.getUid().toString())){
+                            dislike_btn.setButtonDrawable(R.drawable.dislike_red);
+                            dislike_btn.setChecked(true);
+                        }else{
+                            dislike_btn.setButtonDrawable(R.drawable.dislike);
+                        }
+
                     }
                 }
             });
@@ -138,14 +172,14 @@ public class PostAdapter extends ArrayAdapter {
             db.collection("post").document(models.get(position).post_id).collection("likes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    checklike.clear();
                     if (task.isSuccessful()){
                         for (QueryDocumentSnapshot snapshot : task.getResult() ){
-                            if (snapshot.getString("userid").equals(currentuser.getUid())){
+                            checklike.add(snapshot.getId());
+                           /* if (snapshot.getString("userid").equals(currentuser.getUid())){
 
                                 like_btn.setButtonDrawable(R.drawable.like_green);
                                 like_btn.setChecked(true);
-
-
 
 
 
@@ -153,7 +187,13 @@ public class PostAdapter extends ArrayAdapter {
 
                                 like_btn.setButtonDrawable(R.drawable.like);
 
-                            }
+                            }*/
+                        }
+                        if (checklike.contains(mAuth.getUid().toString())){
+                            like_btn.setButtonDrawable(R.drawable.like_green);
+                            like_btn.setChecked(true);
+                        }else{
+                            like_btn.setButtonDrawable(R.drawable.like);
                         }
                     }
                 }
@@ -202,7 +242,7 @@ public class PostAdapter extends ArrayAdapter {
                                                 dislike_btn.setChecked(false);
                                             }
                                         }
-                                    },2000);
+                                    },1000);
 
 
                                     like(models.get(position).post_id,likes);
@@ -213,7 +253,7 @@ public class PostAdapter extends ArrayAdapter {
 
                                 }
                             }
-                        },2000);
+                        },1000);
 
 
                     }
@@ -268,7 +308,7 @@ public class PostAdapter extends ArrayAdapter {
                                                     like_btn.setChecked(false);
                                                 }
                                             }
-                                        },2000);
+                                        },1000);
 
 
                                         dislike(models.get(position).post_id,dislikes);
@@ -279,7 +319,7 @@ public class PostAdapter extends ArrayAdapter {
 
                                     }
                                 }
-                            },2000);
+                            },1000);
 
 
                         }
@@ -337,8 +377,10 @@ public class PostAdapter extends ArrayAdapter {
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                nooflikes=0;
                                 if (task.isSuccessful()){
                                     DocumentSnapshot document = task.getResult();
+
                                     nooflikes = Integer.valueOf(document.getString("no_of_likes"));
                                 }
 
@@ -360,27 +402,29 @@ public class PostAdapter extends ArrayAdapter {
                         String res = String.valueOf(nooflikes);
                         Map<String, Object> no_of_likes = new HashMap<>();
                         no_of_likes.put("no_of_likes", res);
+                        likes.setText(res);
                         /*if the post adding was successful, the no of likes in the post collection should be updated*/
                         db.collection("post").document(blogid).update(no_of_likes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(context, res.toString(), Toast.LENGTH_SHORT).show();
-                                likes.setText(res);
+
                             }
                         });
                     }
                 });
             }
-        },2000);
+        },1000);
 
 
     }
 
     public void deletelike(String blogid,TextView like){
+
         db.collection("post").document(blogid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){
+                    nooflikes = 0;
                     DocumentSnapshot document = task.getResult();
                     nooflikes =Integer.valueOf(document.getString("no_of_likes"));
                 }
@@ -395,11 +439,12 @@ public class PostAdapter extends ArrayAdapter {
                         String res =  String.valueOf(nooflikes);
                         Map<String, Object> no_of_likes = new HashMap<>();
                         no_of_likes.put("no_of_likes",res);
+                        like.setText(res);
                         db.collection("post").document(blogid).update(no_of_likes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(context, res, Toast.LENGTH_SHORT).show();
-                                like.setText(res);
+
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -426,6 +471,7 @@ public class PostAdapter extends ArrayAdapter {
                 }
             }
         });
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -434,6 +480,7 @@ public class PostAdapter extends ArrayAdapter {
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                noofdislikes = 0;
                                 if (task.isSuccessful()){
                                     DocumentSnapshot document = task.getResult();
                                     noofdislikes = Integer.valueOf(document.getString("no_of_dislikes"));
@@ -448,6 +495,7 @@ public class PostAdapter extends ArrayAdapter {
                 post.put("fullname", fullname);
                 post.put("avatar", avatar);
                 post.put("role", role);
+                post.put("userid", currentuser.getUid());
 
                 db.collection("post").document(blogid).collection("dislikes").document(currentuser.getUid())
                         .set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -457,26 +505,29 @@ public class PostAdapter extends ArrayAdapter {
                         String res = String.valueOf(noofdislikes);
                         Map<String, Object> no_of_dislikes = new HashMap<>();
                         no_of_dislikes.put("no_of_dislikes", res);
+                        dislike.setText(res);
                         /*if the post adding was successful, the no of likes in the post collection should be updated*/
                         db.collection("post").document(blogid).update(no_of_dislikes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                dislike.setText(res);
-                                Toast.makeText(context, res.toString(), Toast.LENGTH_SHORT).show();
+
                             }
                         });
                     }
                 });
             }
-        },2000);
+        },1000);
 
 
     }
 
     public void deletedislike(String blogid, TextView dislike){
+
+
         db.collection("post").document(blogid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                noofdislikes = 0;
                 if (task.isSuccessful()){
                     DocumentSnapshot document = task.getResult();
                     noofdislikes =Integer.valueOf(document.getString("no_of_dislikes"));
@@ -493,11 +544,11 @@ public class PostAdapter extends ArrayAdapter {
                         String res =  String.valueOf(noofdislikes);
                         Map<String, Object> no_of_dislikes = new HashMap<>();
                         no_of_dislikes.put("no_of_dislikes",res);
+                        dislike.setText(res);
                         db.collection("post").document(blogid).update(no_of_dislikes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                dislike.setText(res);
-                                Toast.makeText(context, res, Toast.LENGTH_SHORT).show();
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
