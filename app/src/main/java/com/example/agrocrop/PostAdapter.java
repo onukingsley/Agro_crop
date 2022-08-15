@@ -107,7 +107,8 @@ public class PostAdapter extends ArrayAdapter {
             username.setText(models.get(position).username);
             Picasso.with(context).load(models.get(position).getUserimage()).into(profile_image);
             fullname.setText(models.get(position).fullname);
-
+            likes.setText(models.get(position).getNo_of_likes());
+            dislikes.setText(models.get(position).getNo_of_dislikes());
 
             comment.setText(models.get(position).getNo_of_comment());
 
@@ -121,7 +122,7 @@ public class PostAdapter extends ArrayAdapter {
 
 
             /*fetching the no of likes directly from firebase from adapter and assigning it to the model*/
-            db.collection("post").document(models.get(position).post_id).get()
+        /*    db.collection("post").document(models.get(position).post_id).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -135,7 +136,7 @@ public class PostAdapter extends ArrayAdapter {
                             }
 
                         }
-                    });
+                    });*/
 
 
             db.collection("post").document(models.get(position).post_id).collection("dislikes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -238,14 +239,14 @@ public class PostAdapter extends ArrayAdapter {
                                         @Override
                                         public void run() {
                                             if (dislikesmodel.contains(mAuth.getUid())){
-                                                deletedislike(models.get(position).post_id,dislikes);
+                                                deletedislike(models.get(position).post_id,dislikes,position);
                                                 dislike_btn.setChecked(false);
                                             }
                                         }
                                     },1000);
 
 
-                                    like(models.get(position).post_id,likes);
+                                    like(models.get(position).post_id,likes,position);
 
                                     like_btn.setButtonDrawable(R.drawable.like_green);
                                     dislike_btn.setChecked(false);
@@ -258,7 +259,7 @@ public class PostAdapter extends ArrayAdapter {
 
                     }
                     else {
-                        deletelike(models.get(position).post_id,likes);
+                        deletelike(models.get(position).post_id,likes,position);
 
                         like_btn.setButtonDrawable(R.drawable.like);
                     }
@@ -303,7 +304,7 @@ public class PostAdapter extends ArrayAdapter {
                                             @Override
                                             public void run() {
                                                 if (likesmodel1.contains(mAuth.getUid())){
-                                                    deletelike(models.get(position).post_id,likes);
+                                                    deletelike(models.get(position).post_id,likes,position);
 
                                                     like_btn.setChecked(false);
                                                 }
@@ -311,7 +312,7 @@ public class PostAdapter extends ArrayAdapter {
                                         },1000);
 
 
-                                        dislike(models.get(position).post_id,dislikes);
+                                        dislike(models.get(position).post_id,dislikes,position);
 
                                         dislike_btn.setButtonDrawable(R.drawable.dislike_red);
                                         like_btn.setChecked(false);
@@ -335,7 +336,7 @@ public class PostAdapter extends ArrayAdapter {
                         like_btn.setChecked(false);*/
                     }
                     else{
-                        deletedislike(models.get(position).post_id,dislikes);
+                        deletedislike(models.get(position).post_id,dislikes,position);
 
                         dislike_btn.setButtonDrawable(R.drawable.dislike);
                     }
@@ -354,7 +355,7 @@ public class PostAdapter extends ArrayAdapter {
         return super.getCount();
     }
 
-    public void like(String blogid,TextView likes){
+    public void like(String blogid,TextView likes, int position){
         /*retrieving of user details form the user collection so as to add in the like collection*/
         db.collection("user").document(currentuser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -403,11 +404,12 @@ public class PostAdapter extends ArrayAdapter {
                         Map<String, Object> no_of_likes = new HashMap<>();
                         no_of_likes.put("no_of_likes", res);
                         likes.setText(res);
+
                         /*if the post adding was successful, the no of likes in the post collection should be updated*/
                         db.collection("post").document(blogid).update(no_of_likes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-
+                                models.get(position).no_of_likes = res;
                             }
                         });
                     }
@@ -418,7 +420,7 @@ public class PostAdapter extends ArrayAdapter {
 
     }
 
-    public void deletelike(String blogid,TextView like){
+    public void deletelike(String blogid,TextView like,int position){
 
         db.collection("post").document(blogid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -443,7 +445,7 @@ public class PostAdapter extends ArrayAdapter {
                         db.collection("post").document(blogid).update(no_of_likes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-
+                                models.get(position).no_of_likes = res;
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -457,7 +459,7 @@ public class PostAdapter extends ArrayAdapter {
         );
     }
 
-    public void dislike (String blogid, TextView dislike){
+    public void dislike (String blogid, TextView dislike , int position){
         /*retrieving of user details form the user collection so as to add in the like collection*/
         db.collection("user").document(currentuser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -510,7 +512,7 @@ public class PostAdapter extends ArrayAdapter {
                         db.collection("post").document(blogid).update(no_of_dislikes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-
+                                models.get(position).no_of_dislikes = res;
                             }
                         });
                     }
@@ -521,7 +523,7 @@ public class PostAdapter extends ArrayAdapter {
 
     }
 
-    public void deletedislike(String blogid, TextView dislike){
+    public void deletedislike(String blogid, TextView dislike, int position){
 
 
         db.collection("post").document(blogid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -548,7 +550,7 @@ public class PostAdapter extends ArrayAdapter {
                         db.collection("post").document(blogid).update(no_of_dislikes).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-
+                                models.get(position).no_of_dislikes = res;
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
