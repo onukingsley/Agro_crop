@@ -63,7 +63,7 @@ public class Global_Newsfeed_Fragment extends Fragment {
     }
 
     public void stringrequest(View view, Global_News_adapter adapter){
-        StringRequest request = new StringRequest(Request.Method.GET, "https://newsapi.org/v2/everything?q=agriculture%20and%20planting%20and%20harvest&from=2022-07-15&sortBy=publishedAt&apiKey=819b3b2ae72f4ed48335a601245879c9", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, "https://newsapi.org/v2/everything?q=agriculture%20and%20planting%20and%20harvest&from=2022-07-22 &sortBy=publishedAt&apiKey=819b3b2ae72f4ed48335a601245879c9", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("response", response.toString());
