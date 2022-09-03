@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroCrop">
         <activity
+            android:name=".Crop_Detail_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".CropActivity"
+            android:exported="false" />
+        <activity
             android:name=".Global_webview"
             android:exported="false" />
         <activity

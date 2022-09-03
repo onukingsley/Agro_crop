@@ -106,7 +106,7 @@ public class Home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.profile:
-                        Intent i = new Intent(Home.this,ProfileActivity.class);
+                        Intent i = new Intent(Home.this,CropActivity.class);
                         startActivity(i);
                         break;
 
