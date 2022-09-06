@@ -118,26 +118,33 @@ public class SignIn extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        try {
 
+                            if (role.equals("2")){
 
-                        if (role.equals("2")){
+                                Intent i = new Intent(SignIn.this,Home.class);
+                                startActivity(i);
+                                finish();
+                            }
+                            else if (role.equals("1")){
 
-                            Intent i = new Intent(SignIn.this,Home.class);
+                                Intent i = new Intent(SignIn.this, AdminHome.class);
+                                startActivity(i);
+                                finish();
+                            }
+                            else if(role.equals("0")){
+
+                                Intent i = new Intent(SignIn.this, SuperAdminHome.class);
+                                startActivity(i);
+                                finish();
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(SignIn.this, e.toString(), Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(SignIn.this,SignIn.class);
                             startActivity(i);
                             finish();
                         }
-                        else if (role.equals("1")){
 
-                            Intent i = new Intent(SignIn.this, AdminHome.class);
-                            startActivity(i);
-                            finish();
-                        }
-                        else if(role.equals("0")){
-
-                            Intent i = new Intent(SignIn.this, SuperAdminHome.class);
-                            startActivity(i);
-                            finish();
-                        }
                     }
                 },3000);
 

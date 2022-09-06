@@ -53,7 +53,8 @@ public class CropActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
 
                     for (QueryDocumentSnapshot document : task.getResult()){
-                        CropModel cropModel = new CropModel(document.getString("crop_title"),document.getString("crop_image"));
+                        CropModel cropModel = new CropModel(document.getString("crop_title"),
+                                document.getString("crop_image"),document.getId());
 
                         model.add(cropModel);
                         adapter.notifyDataSetChanged();

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,14 +52,18 @@ public class Crop_Data_Adapter extends ArrayAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Toast.makeText(parent.getContext(), model.get(position).getCropTitle().toString(),
+                            Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(view.getContext(),Crop_Detail_Activity.class);
                     Bundle cropinfo = new Bundle();
                     cropinfo.putString("crop_title", model.get(position).getCropTitle());
                     cropinfo.putString("crop_image", model.get(position).getImage());
+                    cropinfo.putString("crop_id", model.get(position).getCrop_id());
                     i.putExtras(cropinfo);
                     ((AppCompatActivity)getContext()).startActivity(i);
                 }
             });
+
             return view;
         }
 

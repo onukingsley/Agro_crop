@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 public class CropModel implements Serializable {
 
-    private String cropTitle, crop_description, soil_ph, harvest, sitePreparation, weeding, image;
+    private String crop_id, cropTitle, crop_description, soil_ph, harvest, sitePreparation, weeding,
+            image;
 
     public CropModel() {
     }
 
 
 
-    public CropModel(String cropTitle, String image) {
+    public CropModel(String cropTitle, String image, String crop_id) {
         this.cropTitle = cropTitle;
         this.image = image;
+        this.crop_id = crop_id;
     }
 
     public CropModel(String cropTitle, String crop_description, String soil_ph, String harvest, String sitePreparation, String weeding) {
@@ -49,5 +51,9 @@ public class CropModel implements Serializable {
 
     public String getWeeding() {
         return weeding;
+    }
+
+    public String getCrop_id() {
+        return crop_id;
     }
 }
