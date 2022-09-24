@@ -64,7 +64,7 @@ public class ChartListActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot docs : task.getResult()){
                         ChartListModel mod = new ChartListModel();
                         db.collection("user").document(mAuth.getUid()).collection("chart").document(docs.getId())
-                                .collection("messages").orderBy("timestamp").limit(1)
+                                .collection("message").orderBy("timestamp").limit(1)
                                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {

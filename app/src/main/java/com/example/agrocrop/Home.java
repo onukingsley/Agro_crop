@@ -117,6 +117,10 @@ public class Home extends AppCompatActivity {
                         Intent i = new Intent(Home.this,CropActivity.class);
                         startActivity(i);
                         break;
+                    case R.id.complain:
+                        Intent complain = new Intent(Home.this,ChartListActivity.class);
+                        startActivity(complain);
+                        break;
 
                 }
 

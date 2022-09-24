@@ -56,7 +56,7 @@ String userid,userimagebundle,usernamebundle;
         Bundle bundle = getIntent().getExtras();
         userid = bundle.getString("userid");
         usernamebundle = bundle.getString("username");
-        userimagebundle = bundle.getString("userimage");
+        userimagebundle = bundle.getString("userImage");
 
 
 
