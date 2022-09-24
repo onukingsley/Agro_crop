@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity {
-FloatingActionButton newpost;
+FloatingActionButton newpost,chat;
 FirebaseFirestore db;
 FirebaseAuth mAuth;
 TextView fullname, username, no_of_posts, role;
@@ -31,6 +31,7 @@ ImageView profile_image, user_coverpage;
 CardView edit_profile;
 ProgressDialog progressDialog;
 String txtavatar,datereg,email,txtfullname,txtnoofpost,txtrole,txtusername;
+String userid,userimagebundle,usernamebundle;
 
 
 
@@ -51,11 +52,22 @@ String txtavatar,datereg,email,txtfullname,txtnoofpost,txtrole,txtusername;
         progressDialog = new ProgressDialog(ProfileActivity.this);
         progressDialog.setTitle("loading profile");
         progressDialog.show();
+        chat = findViewById(R.id.chat);
+        Bundle bundle = getIntent().getExtras();
+        userid = bundle.getString("userid");
+        usernamebundle = bundle.getString("username");
+        userimagebundle = bundle.getString("userimage");
+
+
+
+
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         getuserdetails();
+
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -76,6 +88,18 @@ String txtavatar,datereg,email,txtfullname,txtnoofpost,txtrole,txtusername;
                 progressDialog.dismiss();
             }
         },3000);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("userid",userid);
+                bundle.putString("username",usernamebundle);
+                bundle.putString("userimage",userimagebundle);
+                Intent i = new Intent(ProfileActivity.this,ChatActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
 
         newpost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +122,10 @@ String txtavatar,datereg,email,txtfullname,txtnoofpost,txtrole,txtusername;
     }
 
     public void getuserdetails(){
-        db.collection("user").document(mAuth.getUid().toString()).get().addOnCompleteListener(
+        //Bundle bundle = getIntent().getExtras();
+
+
+        db.collection("user").document(userid).get().addOnCompleteListener(
                 new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {

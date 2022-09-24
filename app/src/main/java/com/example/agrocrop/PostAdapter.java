@@ -2,6 +2,7 @@ package com.example.agrocrop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,6 +117,13 @@ public class PostAdapter extends ArrayAdapter {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(context,ProfileActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fullname", models.get(position).fullname);
+                    bundle.putString("username", models.get(position).username);
+                    bundle.putString("userImage", models.get(position).userimage);
+                    bundle.putString("userid", models.get(position).userid);
+
+                    i.putExtras(bundle);
                     ((AppCompatActivity)getContext()).startActivity(i);
                 }
             });

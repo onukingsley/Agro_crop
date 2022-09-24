@@ -4,23 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/drawable/backarrow.xml" value="0.1315" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_chart_list.xml" value="0.2" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_chat.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_crop.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_crop_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_global_webview.xml" value="0.22" />
-        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_home.xml" value="0.19" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_newpost.xml" value="0.15" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_normal_user_profile.xml" value="0.25" />
-        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_profile.xml" value="0.5" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/admin/activity_admin_home.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/fragment_crop__data.xml" value="0.16" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/fragment_global__newsfeed.xml" value="0.15053763440860216" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/fragment_news_feed.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/home_toolbar.xml" value="0.22" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/navbar_header.xml" value="0.3185840707964602" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/single_chat.xml" value="0.1" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/single_chat_card.xml" value="0.2" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/single_data_card.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/single_global_news.xml" value="0.25" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/single_orher_chat.xml" value="0.22" />
+        <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/single_user_chat.xml" value="0.25" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/singlepost.xml" value="0.42516268980477223" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/superadmin/activity_sadmin_home.xml" value="0.1" />
         <entry key="..\:/Users/Zinox/AndroidStudioProjects/Agrocrop/app/src/main/res/layout/superadmin/activity_super_admin_home.xml" value="0.1" />

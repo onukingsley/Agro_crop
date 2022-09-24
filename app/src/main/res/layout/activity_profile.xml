@@ -77,6 +77,16 @@
                     android:layout_marginBottom="70dp"
                     android:src="@drawable/black"
                     />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="70dp"
+                    android:src="@drawable/ic_baseline_mark_chat_read_24"
+                    />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,11 +184,11 @@
                                 android:textSize="17sp" />
 
                             <TextView
-                            android:id="@+id/role"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="13dp"
-                            android:textSize="17sp" />
+                                android:id="@+id/role"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="13dp"
+                                android:textSize="17sp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -192,7 +202,7 @@
 
                 <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
 
             </RelativeLayout>
         </LinearLayout>

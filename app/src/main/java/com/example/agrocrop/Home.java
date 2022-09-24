@@ -105,7 +105,15 @@ public class Home extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+
                     case R.id.profile:
+                        Bundle bundle = new Bundle();
+                        bundle.putString("userid", mAuth.getUid().toString());
+                        Intent profileIntent = new Intent(Home.this,ProfileActivity.class);
+                        profileIntent.putExtras(bundle);
+                        startActivity(profileIntent);
+                        break;
+                    case R.id.cropData:
                         Intent i = new Intent(Home.this,CropActivity.class);
                         startActivity(i);
                         break;

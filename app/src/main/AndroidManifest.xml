@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroCrop">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChartListActivity"
+            android:exported="false" />
+        <activity
             android:name=".Crop_Detail_Activity"
             android:exported="false" />
         <activity
