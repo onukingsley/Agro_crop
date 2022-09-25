@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     android:background="#F5F5F5"
     tools:context=".ChatActivity">
 
@@ -51,85 +52,105 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:id="@+id/scroll"
+
         android:layout_marginTop="5dp"
         >
-        <androidx.recyclerview.widget.RecyclerView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:id="@+id/chatcontainer"
-            android:layout_height="wrap_content"/>
+            android:orientation="vertical"
+
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/chatcontainer"
+                android:layout_height="wrap_content"/>
+
+
+
+
+        </RelativeLayout>
+
+
 
 
     </androidx.core.widget.NestedScrollView>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="fill_parent"
-            >
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        android:layout_weight="0"
+        android:layout_height="wrap_content"
+        >
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="280dp"
-                android:layout_height="53dp"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="10dp"
-                android:elevation="20dp"
-                app:cardCornerRadius="20dp"
-                android:layout_marginBottom="10dp">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autoSizeTextType="uniform"
-                    android:id="@+id/message"/>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/attach"
-                        android:id="@+id/attach"
-                        android:backgroundTint="@android:color/transparent"
-                        android:scaleX="1.2"
-                        android:scaleY="1.2"
-                        android:layout_alignParentEnd="true"/>
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/image"
-                        android:id="@+id/gallary"
-                        android:backgroundTint="@android:color/transparent"
-                        android:scaleX="1.1"
-                        android:scaleY="1.1"
-                        android:layout_toLeftOf="@+id/attach"/>
-
-                </RelativeLayout>
-
-
-
-
-            </androidx.cardview.widget.CardView>
-
-            <ImageButton
-                android:id="@+id/send"
-                android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="280dp"
+            android:layout_height="53dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="10dp"
+            android:elevation="20dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="10dp">
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="13dp"
-                android:backgroundTint="@android:color/transparent"
-                android:rotation="-35"
-                android:rotationX="0"
-                android:rotationY="6"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:src="@drawable/send_green" />
-        </LinearLayout>
+                android:id="@+id/message"/>
 
-    </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/attach"
+                    android:id="@+id/attach"
+                    android:backgroundTint="@android:color/transparent"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/image"
+                    android:id="@+id/gallary"
+                    android:backgroundTint="@android:color/transparent"
+                    android:scaleX="1.1"
+                    android:scaleY="1.1"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/attach"/>
+
+            </RelativeLayout>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="13dp"
+            android:backgroundTint="@android:color/transparent"
+            android:rotation="-35"
+            android:rotationX="0"
+            android:rotationY="6"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/send_green" />
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>

@@ -29,7 +29,7 @@ public class ChartListAdapter extends RecyclerView.Adapter<ChartListAdapter.View
     @Override
     public ChartListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_chat_card,
-                parent);
+                parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -63,7 +63,7 @@ public class ChartListAdapter extends RecyclerView.Adapter<ChartListAdapter.View
 
     @Override
     public int getItemCount() {
-        return 0;
+        return model.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView user_profileimg,notification;

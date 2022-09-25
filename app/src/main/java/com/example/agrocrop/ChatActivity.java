@@ -3,6 +3,7 @@ package com.example.agrocrop;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
@@ -49,6 +51,7 @@ ArrayList<String> exist = new ArrayList<>();
 String usernametxt,userimagetxt,useridtxt;
 String c_userimage,c_fullname,c_username,c_userqualification;
 ChatAdapter adapter;
+NestedScrollView scroll;
 
 
     @Override
@@ -60,6 +63,7 @@ ChatAdapter adapter;
         username = findViewById(R.id.username);
         chatcontainer = findViewById(R.id.chatcontainer);
         sendbtn = findViewById(R.id.send);
+        scroll = findViewById(R.id.scroll);
         message = findViewById(R.id.message);
         adapter = new ChatAdapter(model,this);
         Bundle bundle = getIntent().getExtras();
@@ -76,6 +80,12 @@ ChatAdapter adapter;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                scroll.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        scroll.fullScroll(View.FOCUS_DOWN);
+                    }
+                },1000);
                 chatcontainer.setAdapter(adapter);
             }
         },2000);
@@ -86,6 +96,7 @@ ChatAdapter adapter;
                 sendtodb(useridtxt);
             }
         });
+
 
 
     }
@@ -101,16 +112,16 @@ ChatAdapter adapter;
                 }
             }
         });
-        if (!exist.isEmpty()){
+        if (exist.isEmpty()){
             Date date  = new Date();
             SimpleDateFormat format = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss");
 
             Map<String, Object> reciever = new HashMap<>();
             reciever.put("userid",userid);
-            reciever.put("username",username);
-            reciever.put("userimage",userimage);
+            reciever.put("username",usernametxt);
+            reciever.put("userimage",userimagetxt);
             reciever.put("timestamp",format.format(date));
-            db.collection("user").document(mAuth.getUid()).collection("chat").document(userid)
+            db.collection("user").document(mAuth.getUid()).collection("chat").document(useridtxt)
                     .set(reciever).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
@@ -127,10 +138,10 @@ ChatAdapter adapter;
             /*writing current user to reciever chat collection*/
 
             Map<String, Object> giver = new HashMap<>();
-            reciever.put("userid",mAuth.getUid());
-            reciever.put("username",c_username);
-            reciever.put("userimage",c_userimage);
-            reciever.put("timestamp",format.format(date));
+            giver.put("userid",mAuth.getUid());
+            giver.put("username",c_username);
+            giver.put("userimage",c_userimage);
+            giver.put("timestamp",format.format(date));
             db.collection("user").document(userid).collection("chat").document(mAuth.getUid())
                     .set(giver).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -215,7 +226,7 @@ ChatAdapter adapter;
 
     public void getmessageupdate(){
         db.collection("user").document(mAuth.getUid()).collection("chat").document(useridtxt)
-                .collection("message").orderBy("timestamp").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .collection("message").orderBy("timestamp", Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 model.clear();

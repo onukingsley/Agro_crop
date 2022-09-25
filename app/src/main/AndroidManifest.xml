@@ -11,6 +11,7 @@
         android:theme="@style/Theme.AgroCrop">
         <activity
             android:name=".ChatActivity"
+
             android:exported="false" />
         <activity
             android:name=".ChartListActivity"
